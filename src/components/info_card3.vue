@@ -4,7 +4,7 @@
       <!-- 左侧图片区域 -->
       <img
         class="card-image"
-        src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+        src="/public/1687131616341.jpg"
       />
 
       <!-- 右侧文字区域 -->

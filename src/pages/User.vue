@@ -1,14 +1,46 @@
 <template>
-  <div class="user">
-    <h2>User Component</h2>
-    <h2>username:{{ username }}</h2>
-    <h2>age:{{ age }}</h2>
-    <h2>id:{{ id_power.id }}, power:{{ id_power.power }}</h2>
-    <h2>username_password:{{ username_password }}</h2>
-    <button @click="showEmail">show email</button>
-    <button @click="changename">change name</button>
-    <button @click="changeuser">change user</button>
+  <div class="common-layout">
+    <el-container>
+      <el-header class="header header-bg">
+        <div class="header-left">
+          <img src="https://www.cjlu.edu.cn/2025xwz/images24/logo.png" alt="logo" style="height:50px" />
+          <span class="site-name">用户中心</span>
+        </div>
+        <div class="header-right">
+          <el-button @click="ToHome" color="#626aef">back<el-icon><DArrowLeft /></el-icon></el-button>
+        </div>
+      </el-header>
+
+      <el-container class="body-container">
+        <el-aside width="400px" class ="Aside aside-bg">
+          <dev class="left_panel">
+            <div class="top_part">
+              <el-avatar :size="250" src="/public/kal_H.png" />
+              <el-button style="margin-top: 10px; min-width: 60px; font-weight: bold;" color="#626aef" icon="refresh" plain>更换头像</el-button><br/>
+              <dev class="short_user_info">
+                <h2 style="margin-top:5px;color: white;">用户名: {{ username }}</h2>
+                <h3 style="margin-top:10px;color: white;">用户ID: {{ id_power.id }}</h3>
+                <h3 style="margin-top:10px;color: white;">用户权限: {{ id_power.power }}</h3>
+              </dev>
+            </div>
+
+            <div class="bottom_part">
+              <el-button class="panel_button" @click="changename" type="primary" icon="edit" plain>编辑个人资料</el-button><br/>
+              <el-button class="panel_button" @click="changeuser" type="danger" icon="SwitchButton" plain>退出登录</el-button>
+            </div>
+          </dev>
+        </el-aside>
+
+        <el-main class="main main-bg">Main
+          <el-table :data="User_Info" stripe style="width: 100%" fit>
+            <el-table-column prop="column" label="" width="auto" />
+            <el-table-column prop="value" label=""  />
+          </el-table>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -18,35 +50,184 @@ export default {
 </script>
 
 <script setup lang="ts" setyped>
-  import { ref,computed } from 'vue'
+
+  // import { ref,computed } from 'vue'
+  import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
 
   const username = ref('user_1')
-  const age = 18
   const email = '123456@45.com'
   const id_power = ref({id: 1, power: 'admin'})
-  const password = 'mypassword'
+  // const password = 'mypassword'
+
+  const User_Info =ref([
+    {
+      column: "username",
+      value: username.value
+    },
+    {
+      column: "email",
+      value: email
+    },
+    {
+      column: "id",
+      value: id_power.value.id
+    },
+    {
+      column: "power",
+      value: id_power.value.power
+    }
+  ])
 
 
-  function showEmail() {
-    alert(email)
-  }
+  // function showEmail() {
+  //   alert(email)
+  // }
   function changename() {
     username.value = 'user_2'
   }
 
   function changeuser() {
     //Object.assign(id_power, {id:2,power:'superadmin'})  //使用reactive定义时修改整个变量
-    id_power.value = {id:2,power:'superadmin'}  //使用ref定义时修改整个变量
+    // id_power.value = {id:2,power:'superadmin'}  //使用ref定义时修改整个变量
+    router.push('/home')
   }
 
-  const username_password = computed(() => {
-    return username.value + '_' + password
-  })
+  // const username_password = computed(() => {
+  //   return username.value + '_' + password
+  // })
+
+  function ToHome() {
+    router.push('/home')
+  }
 
 </script>>
 
 <style scoped>
-  .user {
+  .common-layout {
+  min-height: 100vh;
+  position: relative;
+  overflow: auto;
+  }
+
+  .common-layout::before {
+    content: "";
+    position: fixed;         /* 固定视口，页面滚动时背景不动 */
+    inset: 0;                /* 等价于 top:0;right:0;bottom:0;left:0; */
+    z-index: -2;             /* 放到最底层 */
+    background-image: url('/background.png'); /* <-- 把图片放到 public/images/bg.jpg */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateZ(0); /* 有时可改善 GPU 合成表现 */
+  }
+
+  .common-layout::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.28)); /* 可调不透明度 */
+    pointer-events: none;
+  }
+
+  .body-container {
+    min-height: calc(90vh - 70px);
+    max-width: calc(80vw);
+    margin-top: 5vh;
+    margin-left: 10vw;
+  }
+
+  .header {
+    position: relative;
+    height: 70px;
+    background-color: #303030;
+    color: #40a0ffad;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.28);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-bg {
+    background: rgba(0, 0, 0, 0.700) ;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .site-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+  }
+
+  .Aside {
+    padding: 16px;
+    border-radius: 10px;
+    color: var(--el-text-color-primary);
+  }
+  .aside-bg {
+    background: rgba(0, 0, 0, 0.700) ;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .left_panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .top_part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  .bottom_part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .panel_button{
+    margin: auto;
+    min-width: 200px;
+    font-size: medium;
+    font-weight: bold;
+  }
+
+  .main{
+    border-radius: 10px;
+  }
+
+  .main-bg {
+    background: rgba(0, 0, 0, 0.700) ;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .short_user_info{
+    font-weight: bold;
+    color: wh;
+  }
+
+  /* .user {
     background-color: #f9f9f9;
     box-shadow: 0 0 5px;
     border-radius: 5px;
@@ -61,5 +242,5 @@ export default {
     color: white;
     border-radius: 4px;
     cursor: pointer;
-  }
+  } */
 </style>

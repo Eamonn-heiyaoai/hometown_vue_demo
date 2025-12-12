@@ -7,7 +7,7 @@
           <span class="site-name">家乡介绍</span>
         </div>
         <div class="header-right">
-          <el-button @click="ToUser" size="large" circle><el-avatar> user </el-avatar></el-button>
+          <el-button @click="ToUser" size="large" circle><el-avatar src="/public/kal_H.png" /></el-button>
         </div>
       </el-header>
 
@@ -75,7 +75,7 @@ const activeMenu = ref('')
   position: fixed;         /* 固定视口，页面滚动时背景不动 */
   inset: 0;                /* 等价于 top:0;right:0;bottom:0;left:0; */
   z-index: -2;             /* 放到最底层 */
-  background-image: url('/background.png'); /* <-- 把图片放到 public/images/bg.jpg */
+  background-image: url('/20250506081829174649070940211.jpg'); /* <-- 把图片放到 publicbg.jpg */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -125,7 +125,6 @@ const activeMenu = ref('')
   align-items: center;
   padding: 0 20px;
   box-shadow: 0 6px 18px rgba(2, 6, 23, 0.28);
-  /* 我们把圆角和阴影移到 .glass-effect 中 */
 }
 
 /* aside 高度让其铺满可用内容区（排除 header 高度） */
