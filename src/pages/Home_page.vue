@@ -53,7 +53,7 @@ const handleSelect = (index: string) => {
 
 const router = useRouter()
 function ToUser() {
-  router.push('/user')
+  router.push('/user/user_info')
 }
 
 const activeMenu = ref('')

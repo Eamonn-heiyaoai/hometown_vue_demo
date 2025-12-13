@@ -31,8 +31,8 @@
   max-width: 90%;
   margin: auto;
   background-color: black;
+  border-radius: 12px;
 }
-
 .card-content {
   display: flex;
   gap: 20px;

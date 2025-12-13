@@ -18,24 +18,21 @@
               <el-avatar :size="250" src="/public/kal_H.png" />
               <el-button style="margin-top: 10px; min-width: 60px; font-weight: bold;" color="#626aef" icon="refresh" plain>更换头像</el-button><br/>
               <dev class="short_user_info">
-                <h2 style="margin-top:5px;color: white;">用户名: {{ username }}</h2>
-                <h3 style="margin-top:10px;color: white;">用户ID: {{ id_power.id }}</h3>
-                <h3 style="margin-top:10px;color: white;">用户权限: {{ id_power.power }}</h3>
+                <h2 style="margin-top:5px;color: white;">用户名: {{ userStore.username }}</h2>
+                <h3 style="margin-top:10px;color: white;">用户ID: {{ userStore.id }}</h3>
+                <h3 style="margin-top:10px;color: white;">用户权限: {{ userStore.power }}</h3>
               </dev>
             </div>
 
             <div class="bottom_part">
-              <el-button class="panel_button" @click="changename" type="primary" icon="edit" plain>编辑个人资料</el-button><br/>
+              <el-button class="panel_button" @click="EditUserInfo" type="primary" icon="edit" plain>编辑个人资料</el-button><br/>
               <el-button class="panel_button" @click="changeuser" type="danger" icon="SwitchButton" plain>退出登录</el-button>
             </div>
           </dev>
         </el-aside>
 
-        <el-main class="main main-bg">Main
-          <el-table :data="User_Info" stripe style="width: 100%" fit>
-            <el-table-column prop="column" label="" width="auto" />
-            <el-table-column prop="value" label=""  />
-          </el-table>
+        <el-main class="main main-bg">
+          <router-view/>
         </el-main>
       </el-container>
     </el-container>
@@ -52,47 +49,26 @@ export default {
 <script setup lang="ts" setyped>
 
   // import { ref,computed } from 'vue'
-  import { ref } from 'vue'
   import { useRouter } from 'vue-router'
+  import { useUserStore } from '@/store/user';
+
+  const userStore = useUserStore();
 
   const router = useRouter()
 
-  const username = ref('user_1')
-  const email = '123456@45.com'
-  const id_power = ref({id: 1, power: 'admin'})
   // const password = 'mypassword'
-
-  const User_Info =ref([
-    {
-      column: "username",
-      value: username.value
-    },
-    {
-      column: "email",
-      value: email
-    },
-    {
-      column: "id",
-      value: id_power.value.id
-    },
-    {
-      column: "power",
-      value: id_power.value.power
-    }
-  ])
-
 
   // function showEmail() {
   //   alert(email)
   // }
-  function changename() {
-    username.value = 'user_2'
+  function EditUserInfo() {
+    router.push('/user/user_edit')
   }
 
   function changeuser() {
     //Object.assign(id_power, {id:2,power:'superadmin'})  //使用reactive定义时修改整个变量
     // id_power.value = {id:2,power:'superadmin'}  //使用ref定义时修改整个变量
-    router.push('/home')
+    router.push('/login')
   }
 
   // const username_password = computed(() => {
