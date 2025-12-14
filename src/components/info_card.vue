@@ -1,21 +1,20 @@
 <template>
   <el-card class="card-container">
     <div class="card-content">
-      <!-- 左侧图片区域 -->
+      <!-- 左侧图片 -->
       <img
         class="card-image"
-        src="/public/1687131616341.jpg"
+        :src="image"
+        alt="image"
       />
 
-      <!-- 右侧文字区域 -->
+      <!-- 右侧文字 -->
       <div class="text-container">
-        <!-- 标题部分 - 顶至顶部 -->
-        <h3 class="card-title">这是一个信息卡片组件1</h3>
+        <h3 class="card-title">{{ title }}</h3>
 
-        <!-- 简介部分 - 占据剩余空间 -->
         <div class="description-container">
           <p class="card-description">
-            这里是卡片的详细介绍内容，可以包含多行文字。这段文字会自动在标题下方显示，并且与标题保持左对齐。如果简介内容较长，会自动在容器内滚动显示。
+            {{ description }}
           </p>
         </div>
       </div>
@@ -24,7 +23,22 @@
 </template>
 
 <script setup lang="ts" name="InfoCard">
+defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    default: ''
+  },
+  image: {
+    type: String,
+    default: ''
+  }
+})
 </script>
+
 
 <style scoped>
 .card-container {

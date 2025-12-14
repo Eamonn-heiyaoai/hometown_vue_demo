@@ -29,6 +29,7 @@
   import { reactive, ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { useUserStore } from '@/store/user';
+  import request from '@/utils/request'
 
   const userStore = useUserStore();
 
@@ -38,11 +39,11 @@
   email: string
 }
 
-const ruleFormRef = ref<FormInstance>()
-const ruleForm = reactive<RuleForm>({
-  name: 'username',
-  email: '',
-})
+  const ruleFormRef = ref<FormInstance>()
+  const ruleForm = reactive<RuleForm>({
+    name: userStore.username,
+    email: '',
+  })
 
   const router = useRouter()
 
@@ -57,13 +58,28 @@ const ruleForm = reactive<RuleForm>({
     ],
   })
 
+  async function updatauser(): Promise<void> {
+    const res = await request.post('/user/updatauser', {
+        username: ruleForm.name,
+        email: ruleForm.email,
+        userid: userStore.id
+    })
+    if (res.data.code == 200) {
+      alert('修改成功！')
+      userStore.setUsername(ruleForm.name)
+      userStore.setEmail(ruleForm.email)
+      router.push('/user/user_info')
+    } else {
+      alert('修改失败！')
+    }
+    console.log(res.data)
+  }
+
   const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      userStore.setUsername(ruleForm.name)
-      userStore.setEmail(ruleForm.email)
-      router.push('/user/user_info')
+      updatauser()
     } else {
       console.log('error submit!', fields)
     }

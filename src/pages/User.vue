@@ -16,7 +16,29 @@
           <dev class="left_panel">
             <div class="top_part">
               <el-avatar :size="250" src="/public/kal_H.png" />
-              <el-button style="margin-top: 10px; min-width: 60px; font-weight: bold;" color="#626aef" icon="refresh" plain>更换头像</el-button><br/>
+              <el-button style="margin-top: 10px; min-width: 60px; font-weight: bold;" color="#626aef" icon="refresh" @click="drawer = true" plain>更换头像</el-button><br/>
+              <el-drawer v-model="drawer" title="I am the title" :with-header="false">
+                <div class="avatar-container">
+                  <div class="touxiang_change">
+                    <el-button circle class="avatar-button">
+                      <el-avatar :size="150" shape="square" src="/public/kal_H.png" />
+                    </el-button>
+
+                    <el-button circle class="avatar-button">
+                      <el-avatar :size="150" shape="square" src="/public/kal_H.png" />
+                    </el-button>
+
+                    <!-- 可以继续添加更多按钮，会自动每排两个排列 -->
+                    <el-button circle class="avatar-button">
+                      <el-avatar :size="150" shape="square" src="/public/kal_H.png" />
+                    </el-button>
+
+                    <el-button circle class="avatar-button">
+                      <el-avatar :size="150" shape="square" src="/public/kal_H.png" />
+                    </el-button>
+                  </div>
+                </div>
+              </el-drawer>
               <dev class="short_user_info">
                 <h2 style="margin-top:5px;color: white;">用户名: {{ userStore.username }}</h2>
                 <h3 style="margin-top:10px;color: white;">用户ID: {{ userStore.id }}</h3>
@@ -48,13 +70,15 @@ export default {
 
 <script setup lang="ts" setyped>
 
-  // import { ref,computed } from 'vue'
+  import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { useUserStore } from '@/store/user';
 
   const userStore = useUserStore();
 
   const router = useRouter()
+
+  const drawer = ref(false)
 
   // const password = 'mypassword'
 
@@ -203,20 +227,39 @@ export default {
     color: wh;
   }
 
-  /* .user {
-    background-color: #f9f9f9;
-    box-shadow: 0 0 5px;
-    border-radius: 5px;
-    padding: 15px;
+  .touxiang_change{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
   }
 
-  button {
-    margin: 0 10px;
-    padding: 8px 12px;
-    border: none;
-    background-color: #42b983;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  } */
+  .avatar-container {
+    padding: 20px;
+  }
+
+  .touxiang_change {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每排两个 */
+    gap: 80px; /* 按钮之间的间距 */
+    max-width: 500px; /* 可选：限制最大宽度 */
+    margin: auto;
+  }
+
+  .avatar-button {
+    width: 100px; /* 固定按钮宽度 */
+    height: 100px; /* 固定按钮高度 */
+    padding: 0; /* 移除内边距 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  /* 如果需要按钮有悬停效果 */
+  .avatar-button:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+  }
 </style>

@@ -7,7 +7,9 @@
           <span class="site-name">家乡介绍</span>
         </div>
         <div class="header-right">
-          <el-button @click="ToUser" size="large" circle><el-avatar src="/public/kal_H.png" /></el-button>
+          <el-button @click="ToUser" size="large" circle>
+            <el-avatar src="/public/kal_H.png" />
+          </el-button>
         </div>
       </el-header>
 
@@ -31,8 +33,8 @@
             <router-view/>
           </el-main>
 
-          <el-footer class="footer-area footer-bg">翻页
-            <el-pagination background layout="prev, pager, next" :total="10" />
+          <el-footer class="footer-area footer-bg">
+            &copy; 2025 家乡介绍系统 All rights reserved. desgined by Heiyaoai & ChiaKi707
           </el-footer>
         </el-container>
       </el-container>

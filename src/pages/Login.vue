@@ -117,9 +117,8 @@
         password: formData.value.password
     })
     if (res.data.code == 200) {
-      alert('注册成功，已自动登录！')
-      userStore.setUser(res.data.data.username, res.data.data.email, res.data.data.userid, res.data.data.power, res.data.data.password)
-      router.push('/home')
+      alert('注册成功， 请登录！')
+      router.push('/')
     } else {
       alert('注册失败')
     }
