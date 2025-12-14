@@ -13,6 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     2: typeof import('./src/components/info_card1 copy 2.vue')['default']
     copy: typeof import('./src/components/User_Info copy.vue')['default']
+    Culture_panel: typeof import('./src/components/culture_panel.vue')['default']
     Edit_User_Info: typeof import('./src/components/Edit_User_Info.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -33,6 +34,8 @@ declare module 'vue' {
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElImage: typeof import('element-plus/es')['ElImage']
+    ElImg: typeof import('element-plus/es')['ElImg']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
@@ -56,6 +59,7 @@ declare module 'vue' {
     Info_card3: typeof import('./src/components/info_card3.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Scenery_panel: typeof import('./src/components/scenery_panel.vue')['default']
     User_Info: typeof import('./src/components/User_Info.vue')['default']
   }
 }

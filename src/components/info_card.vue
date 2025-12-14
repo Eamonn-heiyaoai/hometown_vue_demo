@@ -2,11 +2,13 @@
   <el-card class="card-container">
     <div class="card-content">
       <!-- 左侧图片 -->
-      <img
+      <!-- <img
         class="card-image"
         :src="image"
         alt="image"
-      />
+      /> -->
+
+      <el-image class="card-image" :src="image" />
 
       <!-- 右侧文字 -->
       <div class="text-container">
@@ -52,6 +54,7 @@ defineProps({
   display: flex;
   gap: 20px;
   height: 180px;
+  width: 70vw;
 }
 
 .card-image {

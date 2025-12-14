@@ -18,19 +18,24 @@
           <el-menu
             :default-active="activeMenu"
             @select="handleSelect"
-            router="false"
+            :router="true"
             class="custom-menu"
           >
-            <el-menu-item index="/home/info_card1">信息卡片1</el-menu-item>
-            <el-menu-item index="/home/info_card2">信息卡片2</el-menu-item>
-            <el-menu-item index="/home/info_card3">信息卡片3</el-menu-item>
+            <el-menu-item index="/home/food">家乡美食</el-menu-item>
+            <el-menu-item index="/home/culture">家乡文化</el-menu-item>
+            <el-menu-item index="/home/scenery">家乡景点</el-menu-item>
             <!-- <el-menu-item index="other">其它组件</el-menu-item> -->
           </el-menu>
         </el-aside>
         <el-container>
           <el-main class="main-area glass-card">
-            <!-- 动态渲染：currentComponent 为组件对象或组件名 -->
-            <router-view/>
+            <router-view v-slot="{ Component }">
+              <transition name="fade" mode="out-in">
+                <keep-alive>
+                  <component :is="Component" />
+                </keep-alive>
+              </transition>
+            </router-view>
           </el-main>
 
           <el-footer class="footer-area footer-bg">
@@ -253,4 +258,15 @@ const activeMenu = ref('')
   .site-name { font-size: 18px; }
   .Aside { display: none; } /* 小窗口隐藏侧栏（可按需修改） */
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 </style>

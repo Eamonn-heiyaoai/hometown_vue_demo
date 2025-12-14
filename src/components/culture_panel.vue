@@ -55,7 +55,7 @@ const total = ref(0)
 const SearchkeyWords = ref('')
 
 const fetchData = async () => {
-  const res = await request.get('/food', {
+  const res = await request.get('/culture', {
     params: {
       pageNum: pageNum.value,
       pageSize: pageSize.value,

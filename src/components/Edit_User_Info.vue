@@ -42,7 +42,7 @@
   const ruleFormRef = ref<FormInstance>()
   const ruleForm = reactive<RuleForm>({
     name: userStore.username,
-    email: '',
+    email: userStore.email,
   })
 
   const router = useRouter()

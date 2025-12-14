@@ -3,9 +3,9 @@ import {createRouter,createWebHistory} from 'vue-router'
 import User from '@/pages/User.vue'
 import About from '@/pages/About.vue'
 import Home from '@/pages/Home_page.vue'
-import info_card1 from '@/components/food_panel.vue'
-import info_card2 from '@/components/info_card2.vue'
-import info_card3 from '@/components/info_card3.vue'
+import food_panel from '@/components/food_panel.vue'
+import culture_panel from '@/components/culture_panel.vue'
+import scenery_panel from '@/components/scenery_panel.vue'
 import Edit_User_Info from '@/components/Edit_User_Info.vue'
 import User_Info from '@/components/User_Info.vue'
 import Login from '@/pages/Login.vue'
@@ -36,16 +36,16 @@ const router = createRouter({
           component:Home,
           children:[
             {
-              path:'info_card1',
-              component:info_card1
+              path:'food',
+              component:food_panel
             },
             {
-              path:'info_card2',
-              component:info_card2
+              path:'culture',
+              component:culture_panel
             },
             {
-              path:'info_card3',
-              component:info_card3
+              path:'scenery',
+              component:scenery_panel
             }
           ]
         },
