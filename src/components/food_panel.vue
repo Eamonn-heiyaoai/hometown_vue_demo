@@ -64,8 +64,8 @@ const fetchData = async () => {
   })
 
   if (res.data.code === 200) {
-    list.value = res.data.records
-    total.value = res.data.total
+    list.value = res.data.data.records
+    total.value = res.data.data.total
   }
 }
 
