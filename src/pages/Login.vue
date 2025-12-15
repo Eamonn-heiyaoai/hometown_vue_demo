@@ -103,7 +103,12 @@
     })
     if (res.data.code == 200) {
       alert('登录成功！')
-      userStore.setUser(res.data.data.username, res.data.data.email, res.data.data.userid, res.data.data.power, res.data.data.password)
+      userStore.setUser({
+        username: res.data.data.username,
+        email: res.data.data.email,
+        id: String(res.data.data.userid),
+        power: res.data.data.power,
+      })
       router.push('/home')
     } else {
       alert('登录失败，请检查用户名和密码。')
