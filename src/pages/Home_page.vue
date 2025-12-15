@@ -6,6 +6,7 @@
           <img src="https://www.cjlu.edu.cn/2025xwz/images24/logo.png" alt="logo" style="height:50px" />
           <span class="site-name">家乡介绍</span>
         </div>
+
         <div class="header-right">
           <el-button @click="ToUser" size="large" circle>
             <el-avatar src="/public/kal_H.png" />

@@ -64,7 +64,7 @@ const handleSelect = (index: string) => {
 }
 </script>
 
-<style>
+<style scoped>
 /* 让根容器撑满整个页面高度 */
 .common-layout,
 .layout-root {
@@ -106,7 +106,7 @@ const handleSelect = (index: string) => {
 }
 
 .logo-img {
-  height: 56px;          
+  height: 56px;
   width: auto;
 }
 
@@ -115,7 +115,7 @@ const handleSelect = (index: string) => {
   margin-top: 8px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
+  align-items: flex-start;
 }
 
 .header-title {
