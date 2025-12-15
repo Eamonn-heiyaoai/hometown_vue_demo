@@ -13,6 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     2: typeof import('./src/components/info_card1 copy 2.vue')['default']
     copy: typeof import('./src/components/User_Info copy.vue')['default']
+    Culture_admin: typeof import('./src/components/culture_admin.vue')['default']
     Culture_panel: typeof import('./src/components/culture_panel.vue')['default']
     Edit_User_Info: typeof import('./src/components/Edit_User_Info.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
@@ -24,6 +25,7 @@ declare module 'vue' {
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDescriptions: typeof import('element-plus/es')['ElDescriptions']
     ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
@@ -50,6 +52,7 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
+    Food_admin: typeof import('./src/components/food_admin.vue')['default']
     Food_panel: typeof import('./src/components/food_panel.vue')['default']
     Header: typeof import('./src/components/header.vue')['default']
     Header_1: typeof import('./src/components/header_1.vue')['default']
