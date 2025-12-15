@@ -2,12 +2,6 @@
   <el-card class="card-container">
     <div class="card-content">
       <!-- 左侧图片 -->
-      <!-- <img
-        class="card-image"
-        :src="image"
-        alt="image"
-      /> -->
-
       <el-image class="card-image" :src="image" />
 
       <!-- 右侧文字 -->
@@ -45,6 +39,7 @@ defineProps({
 <style scoped>
 .card-container {
   max-width: 90%;
+  height: 200px;
   margin: auto;
   background-color: black;
   border-radius: 12px;
@@ -53,7 +48,7 @@ defineProps({
 .card-content {
   display: flex;
   gap: 20px;
-  height: 180px;
+  height: 155px;
   width: 70vw;
 }
 

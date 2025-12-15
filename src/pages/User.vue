@@ -92,6 +92,7 @@ export default {
   function changeuser() {
     //Object.assign(id_power, {id:2,power:'superadmin'})  //使用reactive定义时修改整个变量
     // id_power.value = {id:2,power:'superadmin'}  //使用ref定义时修改整个变量
+    userStore.clearUser()
     router.push('/login')
   }
 

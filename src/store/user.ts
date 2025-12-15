@@ -2,26 +2,56 @@ import {defineStore} from 'pinia'
 
 import {ref} from 'vue'
 export const useUserStore = defineStore('user', () => {
-    // const UserInfo = ref({
-    //     username: '',
-    //     email: '',
-    //     id: '',
-    //     power: '',
-    //     password: ''
-    // })
-    const username = ref('')
-    const email = ref('')
-    const id = ref("")
-    const power = ref("")
-    const password = ref("")
 
-    function setUser(usernameStr: string, emailStr: string, newId: string, newPower: string, newPassword: string) {
-        username.value = usernameStr
-        email.value = emailStr
-        power.value = newPower
-        password.value = newPassword
-        id.value = newId
-    }
+    const id = ref('')
+  const username = ref('')
+  const email = ref('')
+  const power = ref('')
+  const isLogin = ref(false)
+
+  function setUser(user: {
+  id: string
+  username: string
+  email: string
+  power: string
+}) {
+    id.value = user.id
+    username.value = user.username
+    email.value = user.email
+    power.value = user.power
+    isLogin.value = true
+
+    // 持久化
+    localStorage.setItem('user', JSON.stringify({
+      id: id.value,
+      username: username.value,
+      email: email.value,
+      power: power.value,
+      isLogin: true
+    }))
+  }
+
+  function clearUser() {
+    id.value = ''
+    username.value = ''
+    email.value = ''
+    power.value = ''
+    isLogin.value = false
+
+    localStorage.removeItem('user')
+  }
+
+  function restoreUser() {
+    const cache = localStorage.getItem('user')
+    if (!cache) return
+
+    const user = JSON.parse(cache)
+    id.value = user.id
+    username.value = user.username
+    email.value = user.email
+    power.value = user.power
+    isLogin.value = true
+  }
 
     function setUsername(newName: string) {
         username.value = newName
@@ -32,5 +62,16 @@ export const useUserStore = defineStore('user', () => {
     }
 
 
-    return {username, email, id, power, password, setUsername, setEmail, setUser}
+    return {
+    id,
+    username,
+    email,
+    power,
+    isLogin,
+    setUser,
+    clearUser,
+    restoreUser,
+    setUsername,
+    setEmail
+  }
 })
