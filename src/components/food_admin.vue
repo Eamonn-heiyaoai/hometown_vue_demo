@@ -77,7 +77,6 @@
 
 <script setup lang="ts" >
 import { ref, onMounted } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
 import request from '@/utils/request'
 
 
@@ -98,29 +97,18 @@ const total = ref(0)
 
 const SearchKeyWords = ref('')
 
-const loading = ref(false)
-
 const fetchData = async () => {
-    try {
-        loading.value = true
-        const res = await request.get('/food', {
-            params: {
-            pageNum: pageNum.value,
-            pageSize: pageSize.value,
-            name: SearchKeyWords.value
-            }
-    })
-
-    if (res.data.code === 200) {
-      list.value = res.data.data.records
-      total.value = res.data.data.total
-    } else {
-      alert(res.data.msg || '获取列表失败')
+  const res = await request.get('/food', {
+    params: {
+      pageNum: pageNum.value,
+      pageSize: pageSize.value,
+      name: SearchKeyWords.value
     }
-  } catch (e) {
-    alert('请求列表失败，请稍后重试')
-  } finally {
-    loading.value = false
+  })
+
+  if (res.data.code === 200) {
+    list.value = res.data.data.records
+    total.value = res.data.data.total
   }
   console.log(list.value)
 }

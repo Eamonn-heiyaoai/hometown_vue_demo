@@ -5,7 +5,7 @@
       <!-- 左侧：搜索区域 -->
       <div style="display:flex;align-items:center;gap:8px;">
         <!-- 字段，可以是 text / select / radio 等 -->
-        <span>文化名称：</span>
+        <span>景点名称：</span>
         <el-input
           v-model="SearchKeyWords"
           placeholder="搜索名字..."
@@ -31,6 +31,8 @@
           <el-image :src="scope.row.image" style="width:60px;height:60px;" fit="cover"/>
         </template>
       </el-table-column>
+      <el-table-column prop="location" label="地点" width="120" />
+      <el-table-column prop="price" label="票价" width="60" />
       <el-table-column prop="creationTime" label="创建时间" width="150" />
       <el-table-column prop="updateTime" label="修改时间" width="150" />
       <el-table-column label="操作" width="150">
@@ -65,6 +67,12 @@
         <el-form-item label="图片">
           <el-input v-model="form.image"></el-input>
         </el-form-item>
+        <el-form-item label="地点">
+          <el-input v-model="form.location"></el-input>
+        </el-form-item>
+        <el-form-item label="票价">
+          <el-input v-model="form.price"></el-input>
+        </el-form-item>
       </el-form>
 
       <template #footer>
@@ -85,6 +93,8 @@ interface CardItem {
   name: string
   description: string
   image: string
+  location: string
+  price: string
   creationTime: string
   updateTime: string
 }
@@ -98,7 +108,7 @@ const total = ref(0)
 const SearchKeyWords = ref('')
 
 const fetchData = async () => {
-  const res = await request.get('/culture', {
+  const res = await request.get('/scenery', {
     params: {
       pageNum: pageNum.value,
       pageSize: pageSize.value,
@@ -139,6 +149,8 @@ const form = ref<Partial<CardItem>>({
   name: '',
   description: '',
   image: '',
+  location: '',
+  price: '',
   creationTime: '',
   updateTime: '' 
 })
@@ -155,7 +167,9 @@ const openDialog = (row?: CardItem) => {
       id: undefined,
       name: '',
       description: '',
-      image: ''
+      image: '',
+      location: '',
+      price: ''
     }
   }
   dialogVisible.value = true
@@ -165,17 +179,19 @@ const openDialog = (row?: CardItem) => {
 const onSave = async () => {
   try {
     // 简单校验
-    if (!form.value.name || !form.value.description) {
-      alert('请填写名称和简述')
+    if (!form.value.name ) {
+      alert('请填写名称')
       return
     }
 
     if (dialogTitle.value === '新建') {
       // 新增
-      const res = await request.post('/culture', {
+      const res = await request.post('/scenery', {
         name: form.value.name,
         description: form.value.description,
-        image: form.value.image
+        image: form.value.image,
+        location: form.value.location,
+        price: form.value.price
       })
       console.log(res.data)
 
@@ -193,11 +209,13 @@ const onSave = async () => {
         alert('缺少ID，无法修改')
         return
       }
-      const res = await request.put('/culture', {
+      const res = await request.put('/scenery', {
         id: form.value.id,
         name: form.value.name,
         description: form.value.description,
-        image: form.value.image
+        image: form.value.image,
+        location: form.value.location,
+        price: form.value.price
       })
       console.log(res.data)
 
@@ -222,7 +240,7 @@ const onDelete = async (row: CardItem) => {
   const ok = window.confirm(`确认删除【${row.name}】吗？`)
   if (!ok) return
 
-  const res = await request.delete(`/culture/${row.id}`)
+  const res = await request.delete(`/scenery/${row.id}`)
   console.log(res.data)
 
   if (res.data.code === 200) {

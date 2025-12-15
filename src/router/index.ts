@@ -12,6 +12,7 @@ import Login from '@/pages/Login.vue'
 import Admin from '@/pages/Admin_page.vue'
 import food_admin from '@/components/food_admin.vue'
 import culture_admin from '@/components/culture_admin.vue'
+import scenery_admin from '@/components/scenery_admin.vue'
 
 const router = createRouter({
     history:createWebHistory(),
@@ -63,7 +64,12 @@ const router = createRouter({
             {
               path:'culture',
               component:culture_admin
-            }
+            },
+            {
+              path:'scenery',
+              component:scenery_admin
+            },
+            
             
           ]
         },
