@@ -15,20 +15,48 @@
   </div>
 
   <div class ="button_group">
-    <el-button icon="Warning" color="#626aef" @click="EditUserInfo" size="large">重置账户密码</el-button>
+    <el-button icon="Warning" color="#626aef" @click="dialogFormVisible = true" size="large">重置账户密码</el-button>
   </div>
+
+  <el-dialog v-model="dialogFormVisible" title="Shipping address" width="500">
+    <el-form :model="form">
+      <el-form-item label="Old Password" :label-width="formLabelWidth">
+        <el-input v-model="form.oldpassword" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="New Password" :label-width="formLabelWidth">
+        <el-input v-model="form.newpassword" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Confirm Password" :label-width="formLabelWidth">
+        <el-input v-model="form.confirmpassword" autocomplete="off" />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">
+          Confirm
+        </el-button>
+      </div>
+    </template>
+  </el-dialog>
+
 </template>
 
 <script setup lang="ts">
-
+  import { ref,reactive } from 'vue';
   import { useUserStore } from '@/store/user';
 
+  const dialogFormVisible = ref(false)
   const userStore = useUserStore();
+  const formLabelWidth = '140px'
+
+  const form = reactive({
+    oldpassword: '',
+    newpassword: '',
+    confirmpassword: ''
+  })
 
 
-  function EditUserInfo() {
-    // Here you can add logic to reset the password
-  }
 </script>
 
 <style scoped>
