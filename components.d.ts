@@ -66,6 +66,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Scenery_admin: typeof import('./src/components/scenery_admin.vue')['default']
     Scenery_panel: typeof import('./src/components/scenery_panel.vue')['default']
+    User_admin: typeof import('./src/components/user_admin.vue')['default']
     User_Info: typeof import('./src/components/User_Info.vue')['default']
   }
 }

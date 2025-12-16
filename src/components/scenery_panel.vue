@@ -26,7 +26,8 @@
       v-model:current-page="pageNum"
       v-model:page-size="pageSize"
       :total="total"
-      layout="prev, pager, next"
+      size = "big"
+      background layout="prev, pager, next"
       @current-change="handlePageChange"
     />
     </div>

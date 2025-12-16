@@ -30,6 +30,14 @@
             <el-menu-item index="/admin/scenery">景点管理</el-menu-item>
             <el-menu-item index="/admin/users">用户管理</el-menu-item>
           </el-menu>
+
+          <br/>
+          <el-button class="backbutton"
+          icon="HomeFilled"
+          type="primary"
+          @click="backtohome">
+            返回主页
+          </el-button>
         </el-aside>
 
         <el-container>
@@ -57,10 +65,16 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
+const router = useRouter()
+
 const activeIndex = ref('1')
 const handleSelect = (index: string) => {
   activeIndex.value = index
   console.log('选中了:', index)
+}
+
+function backtohome(){
+  router.push('/home')
 }
 </script>
 
@@ -145,5 +159,10 @@ el-main {
   padding: 10px 0;
   font-size: 12px;
 }
+
+  .backbutton{
+    display: flex;
+    margin: auto;
+  }
 
 </style>

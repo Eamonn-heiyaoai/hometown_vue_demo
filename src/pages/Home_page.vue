@@ -27,7 +27,18 @@
             <el-menu-item index="/home/scenery">家乡景点</el-menu-item>
             <!-- <el-menu-item index="other">其它组件</el-menu-item> -->
           </el-menu>
+
+          <br/>
+          <el-button
+          class ="adminbutton"
+          icon="Files"
+          type="primary"
+          v-if = "isAdmin"
+          @click="goAdmin">
+            后台入口
+          </el-button>
         </el-aside>
+
         <el-container>
           <el-main class="main-area glass-card">
             <router-view v-slot="{ Component }">
@@ -52,6 +63,8 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import { useUserStore } from '@/store/user'
+import { storeToRefs } from 'pinia'
 
 const activeIndex = ref('1')
 const handleSelect = (index: string) => {
@@ -65,6 +78,13 @@ function ToUser() {
 }
 
 const activeMenu = ref('')
+
+const userStore = useUserStore()
+const { isAdmin } = storeToRefs(userStore)
+
+function goAdmin(){
+  router.push('/admin')
+}
 
 </script>
 
@@ -269,5 +289,10 @@ const activeMenu = ref('')
 .fade-leave-to {
   opacity: 0;
 }
+
+  .adminbutton{
+    display: flex;
+    margin: auto;
+  }
 
 </style>
