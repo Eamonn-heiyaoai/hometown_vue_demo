@@ -14,6 +14,7 @@ import food_admin from '@/components/food_admin.vue'
 import culture_admin from '@/components/culture_admin.vue'
 import scenery_admin from '@/components/scenery_admin.vue'
 import user_admin from '@/components/user_admin.vue'
+import detail_page from '@/components/Detail_page.vue'
 
 const router = createRouter({
     history:createWebHistory(),
@@ -51,6 +52,10 @@ const router = createRouter({
             {
               path:'scenery',
               component:scenery_panel
+            },
+            {
+              path: 'detail/:type/:id',
+              component:detail_page
             }
           ]
         },

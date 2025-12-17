@@ -43,7 +43,7 @@
           <el-main class="main-area glass-card">
             <router-view v-slot="{ Component }">
               <transition name="fade" mode="out-in">
-                <keep-alive>
+                <keep-alive exclude="DetailPage">
                   <component :is="Component" />
                 </keep-alive>
               </transition>

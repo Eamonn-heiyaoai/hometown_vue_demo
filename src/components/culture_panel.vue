@@ -19,6 +19,7 @@
       :description="item.description"
       :image="item.image"
       class="card-item"
+      @click ="godetail(item.id)"
     />
 
     <!-- 分页 -->
@@ -40,6 +41,7 @@ import { ref, onMounted } from 'vue'
 import InfoCard from '@/components/info_card.vue'
 import request from '@/utils/request'
 import { Search } from '@element-plus/icons-vue'
+import router from '@/router'
 
 interface CardItem {
   id: number
@@ -54,6 +56,7 @@ const pageNum = ref(1)
 const pageSize = ref(3)
 const total = ref(0)
 const SearchkeyWords = ref('')
+const d_url ='/home/detail/culture/'
 
 const fetchData = async () => {
   const res = await request.get('/culture', {
@@ -75,6 +78,12 @@ const handlePageChange = (page: number) => {
   pageNum.value = page
   fetchData()
 }
+
+  function godetail(id: number){
+    const final_url = d_url + id.toString()
+    console.log(final_url)
+    router.push(final_url)
+  }
 
 onMounted(() => {
   fetchData()
