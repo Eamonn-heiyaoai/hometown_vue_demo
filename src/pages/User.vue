@@ -15,17 +15,17 @@
         <el-aside width="400px" class ="Aside aside-bg">
           <dev class="left_panel">
             <div class="top_part">
-              <el-avatar :size="250" src="/public/kal_H.png" />
+              <el-avatar :size="250" :src="avatar_loc" />
               <el-button style="margin-top: 10px; min-width: 60px; font-weight: bold;" color="#626aef" icon="refresh" @click="drawer = true" plain>更换头像</el-button><br/>
               <el-drawer v-model="drawer" title="I am the title" :with-header="false">
                 <div class="avatar-container">
                   <div class="touxiang_change">
-                    <el-button circle class="avatar-button">
-                      <el-avatar :size="150" shape="square" src="/public/kal_H.png" />
+                    <el-button circle class="avatar-button" @click="ChangeAvatar('avatar_1')">
+                      <el-avatar :size="150" shape="square" src="/public/avatar_1.png" />
                     </el-button>
 
-                    <el-button circle class="avatar-button">
-                      <el-avatar :size="150" shape="square" src="/public/kal_H.png" />
+                    <el-button circle class="avatar-button" @click="ChangeAvatar('avatar_2')">
+                      <el-avatar :size="150" shape="square" src="/public/avatar_2.png" />
                     </el-button>
 
                     <!-- 可以继续添加更多按钮，会自动每排两个排列 -->
@@ -80,11 +80,15 @@ export default {
 
   const drawer = ref(false)
 
-  // const password = 'mypassword'
+  const avatar_path = '/public/'
+  let avatar_loc =avatar_path + userStore.avatar + '.png'
 
-  // function showEmail() {
-  //   alert(email)
-  // }
+
+  function ChangeAvatar(newAvatar:string){
+    avatar_loc =avatar_path + newAvatar +'.png'
+    userStore.setAvatar(newAvatar)
+  }
+
   function EditUserInfo() {
     router.push('/user/user_edit')
   }

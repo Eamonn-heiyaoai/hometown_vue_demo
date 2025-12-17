@@ -79,15 +79,6 @@
   import {useRouter} from 'vue-router'
   import { useUserStore } from '@/store/user';
 
-  // const login = async () => {
-  //   const res = await request.post('/login', {
-  //       username: form.username,
-  //       password: form.password
-  //     })
-
-  //     console.log(res.data)
-  //   }
-
   const router = useRouter()
   const userStore = useUserStore();
   const formData = ref({
@@ -108,6 +99,7 @@
         email: res.data.data.email,
         id: String(res.data.data.userid),
         power: res.data.data.power,
+        avatar:res.data.data.avatarid,
       })
       router.push('/home')
     } else {

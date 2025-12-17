@@ -7,6 +7,7 @@ export const useUserStore = defineStore('user', () => {
   const username = ref('')
   const email = ref('')
   const power = ref('')
+  const avatar = ref('')
   const isLogin = ref(false)
   const isAdmin = computed(() => power.value === 'admin')
 
@@ -15,11 +16,13 @@ export const useUserStore = defineStore('user', () => {
   username: string
   email: string
   power: string
+  avatar: string
 }) {
     id.value = user.id
     username.value = user.username
     email.value = user.email
     power.value = user.power
+    avatar.value = user.avatar
     isLogin.value = true
 
     // 持久化
@@ -28,6 +31,7 @@ export const useUserStore = defineStore('user', () => {
       username: username.value,
       email: email.value,
       power: power.value,
+      avatar: avatar.value,
       isLogin: true
     }))
   }
@@ -37,6 +41,7 @@ export const useUserStore = defineStore('user', () => {
     username.value = ''
     email.value = ''
     power.value = ''
+    avatar.value = ''
     isLogin.value = false
 
     localStorage.removeItem('user')
@@ -51,15 +56,20 @@ export const useUserStore = defineStore('user', () => {
     username.value = user.username
     email.value = user.email
     power.value = user.power
+    avatar.value = user.avatar
     isLogin.value = true
   }
 
     function setUsername(newName: string) {
-        username.value = newName
+      username.value = newName
     }
 
     function setEmail(newEmail: string) {
-        email.value = newEmail
+      email.value = newEmail
+    }
+
+    function setAvatar(newAvatar:string){
+      avatar.value = newAvatar
     }
 
 
@@ -68,12 +78,14 @@ export const useUserStore = defineStore('user', () => {
     username,
     email,
     power,
+    avatar,
     isLogin,
     isAdmin,
     setUser,
     clearUser,
     restoreUser,
     setUsername,
-    setEmail
+    setEmail,
+    setAvatar
   }
 })
