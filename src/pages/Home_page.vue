@@ -43,14 +43,14 @@
           <el-main class="main-area glass-card">
             <router-view v-slot="{ Component }">
               <transition name="fade" mode="out-in">
-                <keep-alive exclude="DetailPage">
+                <keep-alive exclude="DetailPage, AboutPage">
                   <component :is="Component" />
                 </keep-alive>
               </transition>
             </router-view>
           </el-main>
 
-          <el-footer class="footer-area footer-bg">
+          <el-footer class="footer-area footer-bg" @click="ToAbout">
             &copy; 2025 家乡介绍系统 All rights reserved. desgined by Heiyaoai & ChiaKi707
           </el-footer>
         </el-container>
@@ -87,6 +87,10 @@ const avatar_path = '/public/avatar/'
 
 function goAdmin(){
   router.push('/admin')
+}
+
+function ToAbout(){
+  router.push('/about')
 }
 
 </script>

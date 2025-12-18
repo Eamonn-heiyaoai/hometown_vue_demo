@@ -29,12 +29,12 @@
                     </el-button>
 
                     <!-- 可以继续添加更多按钮，会自动每排两个排列 -->
-                    <el-button circle class="avatar-button">
-                      <el-avatar :size="150" shape="square" src="/public/kal_H.png" />
+                    <el-button circle class="avatar-button" @click="ChangeAvatar('avatar_3')">
+                      <el-avatar :size="150" shape="square" src="/public/avatar/avatar_3.png" />
                     </el-button>
 
-                    <el-button circle class="avatar-button">
-                      <el-avatar :size="150" shape="square" src="/public/kal_H.png" />
+                    <el-button circle class="avatar-button" @click="ChangeAvatar('avatar_4')">
+                      <el-avatar :size="150" shape="square" src="/public/avatar/avatar_4.png" />
                     </el-button>
                   </div>
                 </div>
@@ -111,6 +111,15 @@ export default {
       // alert('修改成功！')
       drawer.value = false
       router.push('/user/user_info')
+
+      localStorage.setItem('user', JSON.stringify({
+        id: userStore.id,
+        username: userStore.username,
+        email: userStore.email,
+        power: userStore.power,
+        avatar: userStore.avatar,
+        isLogin: true
+      }))
     } else {
       alert('修改失败！')
     }

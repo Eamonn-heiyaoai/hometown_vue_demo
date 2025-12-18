@@ -1,7 +1,7 @@
 import {createRouter,createWebHistory} from 'vue-router'
 
 import User from '@/pages/User.vue'
-import About from '@/pages/About.vue'
+import About from '@/pages/About_page.vue'
 import Home from '@/pages/Home_page.vue'
 import food_panel from '@/components/food_panel.vue'
 import culture_panel from '@/components/culture_panel.vue'

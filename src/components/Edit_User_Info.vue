@@ -70,6 +70,15 @@
       userStore.setUsername(ruleForm.name)
       userStore.setEmail(ruleForm.email)
       router.push('/user/user_info')
+
+      localStorage.setItem('user', JSON.stringify({
+        id: userStore.id,
+        username: userStore.username,
+        email: userStore.email,
+        power: userStore.power,
+        avatar: userStore.avatar,
+        isLogin: true
+      }))
     } else {
       alert('修改失败！')
     }
