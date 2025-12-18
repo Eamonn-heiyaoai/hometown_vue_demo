@@ -9,7 +9,7 @@
 
         <div class="header-right">
           <el-button @click="ToUser" size="large" circle>
-            <el-avatar src="/public/kal_H.png" />
+            <el-avatar :src="avatar_loc" />
           </el-button>
         </div>
       </el-header>
@@ -81,6 +81,9 @@ const activeMenu = ref('')
 
 const userStore = useUserStore()
 const { isAdmin } = storeToRefs(userStore)
+
+const avatar_path = '/public/avatar/'
+  const avatar_loc =avatar_path + userStore.avatar + '.png'
 
 function goAdmin(){
   router.push('/admin')

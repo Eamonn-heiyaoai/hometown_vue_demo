@@ -9,8 +9,13 @@
 
     <el-divider />
 
-    <el-image :src="detail.image" fit="cover" />
-    <h1>{{ detail.name }}</h1>
+    <div class="title"><span class="title">{{ detail.name }}</span></div>
+
+    <div class="image-panel">
+      <el-image class="detail-image" :src="detail.image" fit="cover" />
+    </div>
+
+
     <p class="desc">{{ detail.description }}</p>
 
   </el-card>
@@ -70,3 +75,25 @@
   }
 
 </script>
+
+<style>
+  .detail-image {
+    width: 1024px;
+    height: 768px;
+    flex-shrink: 0;
+    border-radius: 10px;
+  }
+
+  .image-panel{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .title{
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px;
+    color: #0080ff;
+  }
+</style>

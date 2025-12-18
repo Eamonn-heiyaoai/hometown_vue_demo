@@ -62,7 +62,8 @@
     const res = await request.post('/user/updatauser', {
         username: ruleForm.name,
         email: ruleForm.email,
-        userid: userStore.id
+        userid: userStore.id,
+        avatarid: userStore.avatar
     })
     if (res.data.code == 200) {
       alert('修改成功！')

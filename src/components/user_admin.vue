@@ -78,6 +78,7 @@ interface CardItem {
   username: string
   power:string
   email:string
+  avatarid:string
 }
 
 const list = ref<CardItem[]>([])

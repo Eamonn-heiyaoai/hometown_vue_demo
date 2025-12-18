@@ -17,15 +17,15 @@
             <div class="top_part">
               <el-avatar :size="250" :src="avatar_loc" />
               <el-button style="margin-top: 10px; min-width: 60px; font-weight: bold;" color="#626aef" icon="refresh" @click="drawer = true" plain>更换头像</el-button><br/>
-              <el-drawer v-model="drawer" title="I am the title" :with-header="false">
+              <el-drawer v-model="drawer" title="选择想要更换的头像" :with-header="false">
                 <div class="avatar-container">
                   <div class="touxiang_change">
                     <el-button circle class="avatar-button" @click="ChangeAvatar('avatar_1')">
-                      <el-avatar :size="150" shape="square" src="/public/avatar_1.png" />
+                      <el-avatar :size="150" shape="square" src="/public/avatar/avatar_1.png" />
                     </el-button>
 
                     <el-button circle class="avatar-button" @click="ChangeAvatar('avatar_2')">
-                      <el-avatar :size="150" shape="square" src="/public/avatar_2.png" />
+                      <el-avatar :size="150" shape="square" src="/public/avatar/avatar_2.png" />
                     </el-button>
 
                     <!-- 可以继续添加更多按钮，会自动每排两个排列 -->
@@ -73,6 +73,7 @@ export default {
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
   import { useUserStore } from '@/store/user';
+  import request from '@/utils/request'
 
   const userStore = useUserStore();
 
@@ -80,13 +81,14 @@ export default {
 
   const drawer = ref(false)
 
-  const avatar_path = '/public/'
+  const avatar_path = '/public/avatar/'
   let avatar_loc =avatar_path + userStore.avatar + '.png'
 
 
   function ChangeAvatar(newAvatar:string){
     avatar_loc =avatar_path + newAvatar +'.png'
     userStore.setAvatar(newAvatar)
+    updatauser()
   }
 
   function EditUserInfo() {
@@ -98,6 +100,23 @@ export default {
     router.push('/login')
   }
 
+   async function updatauser(): Promise<void> {
+    const res = await request.post('/user/updatauser', {
+        username: userStore.username,
+        email: userStore.email,
+        userid: userStore.id,
+        avatarid: userStore.avatar
+    })
+    if (res.data.code == 200) {
+      // alert('修改成功！')
+      drawer.value = false
+      router.push('/user/user_info')
+    } else {
+      alert('修改失败！')
+    }
+    console.log(res.data)
+  }
+
   // const username_password = computed(() => {
   //   return username.value + '_' + password
   // })
@@ -106,7 +125,7 @@ export default {
     router.push('/home')
   }
 
-</script>>
+</script>
 
 <style scoped>
   .common-layout {
