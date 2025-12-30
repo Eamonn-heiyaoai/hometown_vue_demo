@@ -15,6 +15,12 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 
+router.beforeEach((to, from, next) => {
+  const title = typeof to.meta.title === 'string' ? to.meta.title : '家乡介绍'
+  document.title = title
+  next()
+})
+
 app.use(router)
 app.use(pinia)
 

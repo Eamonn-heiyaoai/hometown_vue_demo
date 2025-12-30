@@ -23,6 +23,9 @@ const router = createRouter({
         {
           path:'/user',
           component:User,
+          meta:{
+            title: '个人中心'
+          },
           children:[
             {
               path:'user_edit',
@@ -36,31 +39,52 @@ const router = createRouter({
         },
         {
           path:'/about',
-          component:About
+          component:About,
+          meta:{
+            title: '关于我们'
+          },
         },
         {
           path:'/welcome',
-          component:Welcome
+          component:Welcome,
+          meta:{
+            title: '欢迎页'
+          },
         },
         {
           path:'/home',
           component:Home,
+          meta:{
+            title: '家乡介绍-主页'
+          },
           children:[
             {
               path:'food',
-              component:food_panel
+              component:food_panel,
+              meta:{
+                title: '主页-美食'
+              }
             },
             {
               path:'culture',
-              component:culture_panel
+              component:culture_panel,
+              meta:{
+                title: '主页-文化'
+              }
             },
             {
               path:'scenery',
-              component:scenery_panel
+              component:scenery_panel,
+              meta:{
+                title: '主页-景点'
+              }
             },
             {
               path: 'detail/:type/:id',
-              component:detail_page
+              component:detail_page,
+              meta:{
+                title: '详情'
+              }
             }
           ]
         },
@@ -70,32 +94,48 @@ const router = createRouter({
           children:[
             {
               path:'food',
-              component:food_admin
+              component:food_admin,
+              meta:{
+                title: '后台管理-美食'
+              }
             },
             {
               path:'culture',
-              component:culture_admin
+              component:culture_admin,
+              meta:{
+                title: '后台管理-文化'
+              }
             },
             {
               path:'scenery',
-              component:scenery_admin
+              component:scenery_admin,
+              meta:{
+                title: '后台管理-景点'
+              }
             },
             {
               path:'users',
-              component:user_admin
+              component:user_admin,
+              meta:{
+                title: '后台管理-用户'
+              }
             }
 
           ]
         },
         {
           path:'/login',
-          component:Login
+          component:Login,
+          meta:{
+            title: '登录页'
+          }
         },
         {
           path:'/',
           redirect:'/login'
         }
     ]
+
 })
 
 export default router

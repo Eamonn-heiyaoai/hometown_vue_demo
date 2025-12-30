@@ -16,7 +16,11 @@
             </div>
             <div class="body-font">
               董宇喆(Chiaki707) 23H034160318<br/>
-              毛凌云(Heiyaoai) 23H034160332
+              邮箱:1466491009@qq.com<br/>
+              电话:13567894698<br/>
+              毛凌云(Heiyaoai) 23H034160332<br/>
+              邮箱:3439522822@qq.com<br/>
+              电话:15990182807<br/>
             </div><br/>
             <div class = 'title'>
               项目说明：

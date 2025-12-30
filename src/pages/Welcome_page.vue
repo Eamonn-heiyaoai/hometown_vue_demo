@@ -3,9 +3,9 @@
     <!-- 1. 顶部导航栏 -->
     <header>
       <nav>
-        <a 
-          v-for="item in navItems" 
-          :key="item"
+        <a
+          v-for="item in navItems"
+          :key="item.path"
           class="nav-items"
           @click="handleNavClick(item.path)"
         >
@@ -25,7 +25,7 @@
     <!-- 3. 底部走马灯区域 (动画顺序 3) -->
     <div class="carousel-section animated-element delay-3">
       <div class="carousel-wrapper">
-        <el-carousel :interval="4000" type="card" height="330px">
+        <el-carousel :interval="4000" type="card" height="360px">
           <el-carousel-item v-for="(img, index) in carouselImages" :key="index">
             <!-- 修改点：直接放图片，设置 object-fit: cover 保证填满 -->
             <img :src="img" class="carousel-img" alt="scenery" />
@@ -36,9 +36,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+<script setup lang="ts">
+import { useRouter, type RouteLocationAsPathGeneric, type RouteLocationAsRelativeGeneric } from 'vue-router';
 
 const router = useRouter();
 
@@ -52,7 +51,7 @@ const navItems = [
 ];
 
 // 点击跳转函数
-const handleNavClick = (path) => {
+const handleNavClick = (path: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric) => {
   router.push(path);
 };
 
@@ -94,14 +93,14 @@ const carouselImages = [
 /* --- 整体布局容器 --- */
 .main-container {
   /* 静态背景图设置 */
-  background-image: url('/welcome1.png'); 
+  background-image: url('/welcome1.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  
+
   width: 100%;
   height: 100vh;
-  
+
   display: flex;
   flex-direction: column; /* 纵向布局 */
   overflow: hidden;
@@ -126,15 +125,15 @@ nav {
   align-items: center;
   gap: 10px;
   padding: 10px 5%; /* 左右 padding */
-  
+
   background-color: rgba(255, 255, 255, 0.2); /* 半透明白底 */
   height: 60px; /* 原代码 height:30px 太小，容易切掉文字，建议稍微加大或由 padding 撑开 */
-  
+
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   backdrop-filter: blur(5px); /* 磨砂效果 */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  
+
   /* 入场动画 */
   animation: topIn 1.2s ease-out forwards;
   pointer-events: auto;
@@ -147,7 +146,7 @@ nav {
   letter-spacing: 2px;
   /* 原CSS是深色字 rgb(53,53,53)，如果背景图也是深色，建议改成白色或加粗 */
   color: rgb(240, 240, 240);
-  
+
   width: 110px;
   text-align: center;
   padding: 15px 0;
@@ -158,7 +157,7 @@ nav {
   pointer-events: auto; /* 强制允许鼠标事件 */
   transition: all 0.3s;
   text-decoration: none;
-  
+
   /* 防止文字被选中，提升按钮质感 */
   user-select: none;
 }
@@ -196,7 +195,7 @@ nav:hover > .nav-items:not(:hover) {
   justify-content: center; /* 垂直居中 */
   align-items: center;     /* 水平居中 */
   text-align: center;
-  padding-bottom: 20px; 
+  padding-bottom: 20px;
 }
 
 .sub-title {
@@ -218,18 +217,18 @@ nav:hover > .nav-items:not(:hover) {
 
 /* --- 走马灯区域 --- */
 .carousel-section {
-  height: 40vh; 
+  height: 40vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(to top, rgba(0,0,0,0.5), transparent); /* 底部稍微加深背景 */
-  padding-bottom: 5%; 
+  padding-bottom: auto;
   box-sizing: border-box; /* 确保 padding 算在高度内 */
 }
 
 .carousel-wrapper {
-  height: 130%;
+  height: 100%;
   max-height: 700px;
   width: 90%;
   max-width: 1500px;
