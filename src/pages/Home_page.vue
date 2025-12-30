@@ -31,6 +31,14 @@
           <br/>
           <el-button
           class ="adminbutton"
+          icon="House"
+          color="#626aef"
+          @click="goWelcome">
+            返回主页
+          </el-button>
+          <br/>
+          <el-button
+          class ="adminbutton"
           icon="Files"
           type="primary"
           v-if = "isAdmin"
@@ -87,6 +95,10 @@ const avatar_path = '/public/avatar/'
 
 function goAdmin(){
   router.push('/admin')
+}
+
+function goWelcome(){
+  router.push('/welcome')
 }
 
 function ToAbout(){

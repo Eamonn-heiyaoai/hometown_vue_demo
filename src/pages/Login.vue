@@ -101,7 +101,7 @@
         power: res.data.data.power,
         avatar:res.data.data.avatarid,
       })
-      router.push('/home')
+      router.push('/welcome')/*'/home'*/ 
     } else {
       alert('登录失败，请检查用户名和密码。')
     }

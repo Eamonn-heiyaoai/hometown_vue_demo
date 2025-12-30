@@ -15,6 +15,7 @@ import culture_admin from '@/components/culture_admin.vue'
 import scenery_admin from '@/components/scenery_admin.vue'
 import user_admin from '@/components/user_admin.vue'
 import detail_page from '@/components/Detail_page.vue'
+import Welcome from '@/pages/Welcome_page.vue'
 
 const router = createRouter({
     history:createWebHistory(),
@@ -36,6 +37,10 @@ const router = createRouter({
         {
           path:'/about',
           component:About
+        },
+        {
+          path:'/welcome',
+          component:Welcome
         },
         {
           path:'/home',

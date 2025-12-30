@@ -32,11 +32,18 @@
           </el-menu>
 
           <br/>
+          <el-button class ="backbutton"
+          icon="House"
+          color="#626aef"
+          @click="goWelcome">
+            返回主页
+          </el-button>
+          <br/>
           <el-button class="backbutton"
           icon="HomeFilled"
           type="primary"
           @click="backtohome">
-            返回主页
+            返回介绍页
           </el-button>
         </el-aside>
 
@@ -75,6 +82,10 @@ const handleSelect = (index: string) => {
 
 function backtohome(){
   router.push('/home')
+}
+
+function goWelcome(){
+  router.push('/welcome')
 }
 </script>
 
