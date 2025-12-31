@@ -4,7 +4,7 @@
     <div style="display:flex;justify-content:space-between;margin-bottom:10px;align-items:center;">
       <!-- 左侧：搜索区域 -->
       <div style="display:flex;align-items:center;gap:8px;">
-        <!-- 字段，可以是 text / select / radio 等 -->
+        <!-- 字段 -->
         <span>用户名</span>
         <el-input
           v-model="SearchKeyWords"
