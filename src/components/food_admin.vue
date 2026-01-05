@@ -4,7 +4,8 @@
     <div style="display:flex;justify-content:space-between;margin-bottom:10px;align-items:center;">
       <!-- 左侧：搜索区域 -->
       <div style="display:flex;align-items:center;gap:8px;">
-        <!-- 字段-->
+        <!-- 搜索框字段 -------------------------------------------------------->
+        <!--------------------------------------------------------------------->
         <span>美食名称：</span>
         <el-input
           v-model="SearchKeyWords"
@@ -14,14 +15,17 @@
           clearable
           @clear="onSearch"
         />
+        <!--按键触发-->
         <el-button type="primary" @click="onSearch">搜索</el-button>
+        <!--------------------------------------------------------------------->
+        <!--------------------------------------------------------------------->
       </div>
 
       <!-- 右侧：新建按钮 -->
       <el-button type="primary" @click="openDialog()">新建</el-button>
     </div>
 
-    <!-- 表格 -->
+    <!-- 表格 ------------------------------------------------------------------>
     <el-table :data="list" style="width: 100%">
       <el-table-column prop="id" label="ID" width="60" />
       <el-table-column prop="name" label="名字" width="120" />
@@ -53,7 +57,7 @@
       />
     </div>
 
-    <!-- 弹窗 Dialog -->
+    <!-- 弹窗 Dialog ------------------------------------------------------------------------>
     <el-dialog v-model="dialogVisible" :title="dialogTitle">
       <el-form :model="form">
         <el-form-item label="名字">
@@ -89,6 +93,7 @@ interface CardItem {
   updateTime: string
 }
 
+/**  list数组，响应式对象 */
 const list = ref<CardItem[]>([])
 
 const pageNum = ref(1)
@@ -97,6 +102,7 @@ const total = ref(0)
 
 const SearchKeyWords = ref('')
 
+/**  分页搜索，传回后端 ************************************************/
 const fetchData = async () => {
   const res = await request.get('/food', {
     params: {
@@ -105,13 +111,14 @@ const fetchData = async () => {
       name: SearchKeyWords.value
     }
   })
-
+  /** 200成功，则更新list数据 */
   if (res.data.code === 200) {
     list.value = res.data.data.records
     total.value = res.data.data.total
   }
   console.log(list.value)
 }
+/** ********************************************************************/
 
 const handlePageChange = (page: number) => {
   pageNum.value = page
@@ -129,11 +136,12 @@ const onSearch = () => {
   fetchData()
 }
 
-/** 弹窗相关 */
+
+/** 弹窗相关 *************************************************************/
 const dialogVisible = ref(false)
 const dialogTitle = ref('')
 
-/** 表单数据，字段要和 CardItem 对应 */
+/** 表单数据，字段要和 CardItem 对应 **************************************/
 const form = ref<Partial<CardItem>>({
   id: undefined,
   name: '',
@@ -142,9 +150,10 @@ const form = ref<Partial<CardItem>>({
   creationTime: '',
   updateTime: ''
 })
+/********************************************************************** */
 
 
-/** 打开弹窗：如果有 row 是编辑，没有则是新建 */
+/** 打开弹窗：如果有 row 是编辑，没有则是新建 *******************************/
 const openDialog = (row?: CardItem) => {
   if (row) {
     dialogTitle.value = '修改'
@@ -160,8 +169,9 @@ const openDialog = (row?: CardItem) => {
   }
   dialogVisible.value = true
 }
+/********************************************************************** */
 
-/** 保存：根据 dialogTitle 判断是新增还是修改 */
+/** 保存：根据 dialogTitle 判断是新增还是修改 ******************************/
 const onSave = async () => {
   try {
     // 简单校验
@@ -216,6 +226,7 @@ const onSave = async () => {
     alert('请求失败，请稍后重试')
   }
 }
+/********************************************************************** */
 
 /** 删除：先二次确认，再调后端DELETE，然后重新请求列表 */
 const onDelete = async (row: CardItem) => {
